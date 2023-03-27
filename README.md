@@ -116,3 +116,46 @@ through the `--python-use-system-env` option of Blender, which is done for use
 automatically on NixOS.
 
 See the comment in the script for how it can be run.
+
+# Rendering 2D shaders
+
+Inpired by this [Adam Morse
+post](https://components.ai/files/pub/ntYEnMsFEpobrsSoSabY), I wanted to setup
+a scene to generate images from shaders. The `.blend` file given with the post
+uses a perspective camera pointed at a square plane, and a "sun" lamp is used
+to uniformely light the scene.
+
+This repository contains two alternative ways to generate images from a shader:
+`src/render-checkerboard.py` and `src/bake-checkerboard.py`.
+
+Those scripts are better run "on top" of an `empty.blend` scene: they will each
+construct a scene containing a plane with an attached shader and convert it to
+an image.
+
+The first script, the `render-` one, uses a similar setup to Adam's with two
+differences (in addition that it is done by a script, instead of manually): the
+plane is not a square but is created to match the output aspect ratio, and the
+camera is an orthographic one.
+
+I don't know if this would actually affect the "quality" (this is subjective
+anyway) of the output, but I want the ability to "zoom back" from the plane in
+the case the shader is using e.g. bump maps or normal maps, or to showcase
+reflections, and still see a (non-square) rectangle.
+
+The second script, the `bake-` one, is not using a camera, nor a lamp. Instead
+it bakes the shader to an image.
+
+The resulting images are almost the same but not exactly. Although the
+checkerboard patterns are placed in the same way, the "rendered" version has it
+black square corners not exactly touching each others.
+
+Note: implementing both of these scripts was a bit of a trial and error process
+(I don't know much about Blender), in particular once I changed the initial
+square to a plane matching the output aspect ratio: suddenly, the checkerboard
+cells were no longer squares. Weirdly enough, this required to scale the plane
+using two different ways.
+
+Note: since we can give multiple `--python` arguments to Blender, in addition
+of one of the above script, you can add `--python src/save-blend.py` on the
+command line to save the constructed scene and have a look at it within
+Blender (and even edit the shader).

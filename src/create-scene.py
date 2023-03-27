@@ -2,7 +2,7 @@
 # scene. A red shader is assigned to a cube.
 #
 # Usage:
-#   PYTHONPATH=./src blender empty.blend --background --python create-scene.py
+#   PYTHONPATH=./src blender empty.blend --background --python src/create-scene.py
 
 import bpy
 from math import radians
