@@ -96,3 +96,23 @@ Blender.
 It is possible to build Blender to be a Python module and have the Python code
 drive Blender instead of the other way around. I haven't tried yet.  See [this
 page](https://wiki.blender.org/wiki/Building_Blender/Other/BlenderAsPyModule).
+
+# Creating a simple scene
+
+The script `src/create-scene.py` almost recreates the default Blender scene: a
+cube, a lamp, and a camera.
+
+The main difference is that a red material is defined and applied to the cube.
+
+The lamp and the camera are positioned similarly to the original scene; opening
+the file and hitting F12 should render the cube centered (and red).
+
+The material is defined in a separate file, `src/materials.py`, so that it can
+potentially be reused across multiple scripts. To allow `import`ing that module
+in the script, we have to set the `PYTHONPATH` environement variable.
+
+Note that allowing the usage of that environment variable seems to be done
+through the `--python-use-system-env` option of Blender, which is done for use
+automatically on NixOS.
+
+See the comment in the script for how it can be run.
