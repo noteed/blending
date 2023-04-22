@@ -128,6 +128,11 @@ to uniformely light the scene.
 This repository contains two alternative ways to generate images from a shader:
 `src/render-checkerboard.py` and `src/bake-checkerboard.py`.
 
+```
+$ PYTHONPATH=src/ blender empty.blend --background --python src/render-checkerboard.py
+$ PYTHONPATH=src/ blender empty.blend --background --python src/bake-checkerboard.py
+```
+
 Those scripts are better run "on top" of an `empty.blend` scene: they will each
 construct a scene containing a plane with an attached shader and convert it to
 an image.
