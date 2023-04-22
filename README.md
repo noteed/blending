@@ -164,3 +164,19 @@ Note: since we can give multiple `--python` arguments to Blender, in addition
 of one of the above script, you can add `--python src/save-blend.py` on the
 command line to save the constructed scene and have a look at it within
 Blender (and even edit the shader).
+
+# Thinkpad
+
+On my Thinkpad, the middle button of the trackpad doesn't work similarly to a middle mouse button (i.e. panning).
+
+This can be solved with
+
+```
+$ xinput set-prop 'TPPS/2 IBM TrackPoint' 'libinput Scroll Method Enabled' 0 0 0
+```
+
+`TPPS/2 IBM TrackPoint` can be different on different laptops; this can be
+discovered with `xinput list`.
+
+This is related to [the note
+here](https://wayland.freedesktop.org/libinput/doc/latest/scrolling.html#on-button-scrolling).
