@@ -77,7 +77,7 @@ Blender quit
 ```
 
 Note that a `--python-use-system-env` argument has been given. This is probably
-caused by hhow Blender is packaged for NixOS. This is useful because it allows
+caused by how Blender is packaged for NixOS. This is useful because it allows
 us to set the `PYTHONPATH` environment variable to modularize our scripts and
 load separate code as modules.
 
@@ -109,10 +109,10 @@ the file and hitting F12 should render the cube centered (and red).
 
 The material is defined in a separate file, `src/materials.py`, so that it can
 potentially be reused across multiple scripts. To allow `import`ing that module
-in the script, we have to set the `PYTHONPATH` environement variable.
+in the script, we have to set the `PYTHONPATH` environment variable.
 
 Note that allowing the usage of that environment variable seems to be done
-through the `--python-use-system-env` option of Blender, which is done for use
+through the `--python-use-system-env` option of Blender, which is done for us
 automatically on NixOS.
 
 See the comment in the script for how it can be run.
